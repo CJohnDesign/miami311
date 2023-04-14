@@ -42,13 +42,13 @@ export const ChatMessage: React.FC<React.PropsWithChildren<Props>> = ({
 }) =>
   message.role === "user" ? (
     <div className="flex items-end justify-end">
-      <div className="bg-gray-300 border-gray-100 border-2 rounded-lg p-2 max-w-lg">
+      <div className="text-white bg-slate-900 border-gray-800 border-2 rounded-lg p-2 max-w-lg">
         <p>{message.content}</p>
       </div>
     </div>
   ) : (
     <div className="flex items-end">
-      <div className="bg-gray-100 border-gray-300 border-2 rounded-lg p-2 mr-20 w-full">
+      <div className="text-white bg-slate-700 border-gray-600 border-2 rounded-lg p-2 mr-20 w-full">
         <ReactMarkdown
           children={message.content}
           remarkPlugins={[remarkGfm]}

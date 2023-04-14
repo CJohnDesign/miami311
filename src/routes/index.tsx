@@ -77,7 +77,7 @@ export default function Index() {
         <div className="flex items-center justify-center h-20">
           {state === "idle" ? null : (
             <button
-              className="bg-gray-100 text-gray-900 py-2 px-4 my-8"
+              className="text-white bg-slate-700 border-gray-600 py-2 px-4 my-8"
               onClick={cancel}
             >
               Stop generating
@@ -95,7 +95,7 @@ export default function Index() {
           >
             {chatHistory.length > 1 ? (
               <button
-                className="bg-gray-100 text-gray-600 py-2 px-4 rounded-l-lg"
+                className="text-white bg-slate-800 border-gray-600 py-2 px-4 rounded"
                 type="button"
                 onClick={(e) => {
                   e.preventDefault();
