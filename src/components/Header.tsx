@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AppBar from '@material-ui/core/AppBar';
+import AppBar from '@material-ui/core/AppBar/index.js';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import CodeIcon from '@material-ui/icons/Code';
