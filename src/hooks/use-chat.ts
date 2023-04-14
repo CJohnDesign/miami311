@@ -2,7 +2,7 @@ import { fetchEventSource } from "@fortaine/fetch-event-source";
 import { useState, useMemo } from "react";
 import { appConfig } from "../../config.browser";
 
-const API_PATH = "https://spontaneous-unicorn-59ea55.netlify.app/api/chat";
+const API_PATH = "/api/chat";
 interface ChatMessage {
   role: "user" | "assistant";
   content: string;
