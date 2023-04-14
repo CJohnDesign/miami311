@@ -15,6 +15,8 @@
     "@fortaine/fetch-event-source": "^3.0.6",
     "@impalajs/core": "*",
     "@impalajs/react": "*",
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.6",
