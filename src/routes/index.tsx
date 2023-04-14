@@ -4,24 +4,9 @@ import { useChat } from "../hooks/use-chat";
 import { ChatMessage } from "../components/ChatMessage";
 import { appConfig } from "../../config.browser";
 import { Welcome } from "../components/Welcome";
-import { IconButton, makeStyles } from '@material-ui/core';
-import { Code } from '@material-ui/icons';
-import DebugDrawer from '../components/DebugDrawer';
-
-const useStyles = makeStyles({
-  whiteIcon: {
-    color: 'white',
-  },
-  topRight: {
-    position: 'absolute',
-    top: 0,
-    right: 0,
-  }
-});
+import Header from "../components/Header";
 
 export default function Index() {
-  const classes = useStyles();
-
   // The content of the box where the user is typing
   const [message, setMessage] = useState<string>("");
 
@@ -58,28 +43,10 @@ export default function Index() {
     focusInput();
   }, [state]);
 
-  const [drawerOpen, setDrawerOpen] = useState<boolean>(false);
-
-  const handleCodeIconClick = () => {
-    setDrawerOpen(true);
-  };
-
-  const handleDrawerClose = () => {
-    setDrawerOpen(false);
-  };
-
-
-
   return (
-    <App title="Miami 311">
-
-      <IconButton className={classes.topRight} onClick={handleCodeIconClick}>
-        <Code className={classes.whiteIcon} />
-      </IconButton>
-
+    <App title="Create your own AI chat bot">
+      <Header />
       <main className="p-6 w-full h-full flex flex-col">
-        <div className="flex items-center justify-end mb-4">
-        </div>
         <section className="overflow-y-auto flex-grow mb-4 pb-8">
           <div className="flex flex-col space-y-4">
             {chatHistory.length === 0 ? (
@@ -96,7 +63,7 @@ export default function Index() {
                     </button>
                   ))}
                 </div>
-
+               
               </>
             ) : (
               chatHistory.map((chat, i) => (
@@ -160,7 +127,6 @@ export default function Index() {
             ) : null}
           </form>
         </section>
-        <DebugDrawer open={drawerOpen} onClose={handleDrawerClose} logMessage="Hello world!" classes={{ paper: "bg-slate-900" }} />
       </main>
     </App>
   );
