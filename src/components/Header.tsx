@@ -39,7 +39,7 @@ const Header = () => {
           </IconButton>
         </Toolbar>
       </AppBar>
-      <DebugDrawer open={debugDrawerOpen} onClose={handleDebugDrawerClose} />
+      <DebugDrawer open={debugDrawerOpen} onClose={handleDebugDrawerClose} logMessage={''} />
     </>
   );
 };
