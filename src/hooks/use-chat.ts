@@ -90,7 +90,7 @@ export function useChat() {
     const poll_url: string = tmp_poll_url.toString()
     let poll_result;
     let exit = false;
-    for (let i = 0; i<30; i++) {
+    for (let i = 0; i<60; i++) {
 
       // get result and update history when necessary
       poll_result = await axios.get(poll_url.toString());
@@ -105,7 +105,7 @@ export function useChat() {
       history.forEach(element => {
         console.log(JSON.stringify(element))
         if (element.thought) {
-          result_message += `\nInternal thought: ${element.thought}`
+          result_message += `\n\nInternal thought: ${element.thought}`
           setCurrentChat(result_message);
         } else if (element.command) {
           if (element.command === "print_answer") {
