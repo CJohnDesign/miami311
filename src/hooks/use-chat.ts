@@ -18,6 +18,7 @@ interface ChatMessage {
  */
 export function useChat() {
   const [currentChat, setCurrentChat] = useState<string | null>(null);
+  const [sessionID, setSessionID] = useState<string | null>(null);
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
   const [state, setState] = useState<"idle" | "waiting" | "loading">("idle");
 
@@ -60,7 +61,11 @@ export function useChat() {
       question:message
     });
 
-    console.log(result)
+    if (result.data.session_id === null) {
+      setCurrentChat("Zoinks, the back end is having trouble, please wait a minute ...");
+      return;
+    }
+    const session_id: string = result.data.session_id;
 
     let chatContent = "";
     const newHistory = [
@@ -75,6 +80,47 @@ export function useChat() {
       // to avoid sending too much data
       messages: newHistory.slice(-appConfig.historyLength),
     });
+
+    setCurrentChat("...");
+
+    let history = [];
+    let tmp_poll_url = new URL(API_POLL);
+    tmp_poll_url.searchParams.set("session_id", session_id)
+    const poll_url: string = tmp_poll_url.toString()
+    let poll_result;
+    let exit = false;
+    for (let i = 0; i<30; i++) {
+
+      // get result and update history when necessary
+      poll_result = await axios.get(poll_url.toString());
+      let poll_result_data = poll_result.data
+      if (poll_result_data.process.length > history.length) {
+        history = poll_result_data.process
+      }
+
+      // compile history into an AI chat message
+      let result_message = "";
+      history.forEach(element => {
+        if (element.command) {
+          if (element.command === "print_answer") {
+            exit = true
+          }
+          if (element.arguments.input) {
+            result_message += `Running internal command ${element.command}`
+          } else if (element.arguments.url) {
+            result_message += `Running internal command ${element.command} querying with website ${element.arguments.url}`
+          }
+        }
+      });
+      setCurrentChat(result_message);
+
+      if (exit) {
+        break
+      }
+
+      // wait a sec before polling again
+      await new Promise(resolve => setTimeout(resolve, 1000));  
+    }
 
     // This is like an EventSource, but allows things like
     // POST requests and headers
