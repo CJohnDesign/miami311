@@ -13,6 +13,7 @@ interface ChatMessage {
   content: string;
 }
 
+
 /**
  * A custom hook to handle the chat state and logic
  */
