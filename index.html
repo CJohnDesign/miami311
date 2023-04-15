@@ -3,10 +3,22 @@
   <head>
     <!--head-content-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style>
+      .grad {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90.28deg, #DE5684 30.43%, #72D0ED 73.88%);
+      }
+    </style>
   </head>
   <body class="bg-slate-900">
     <!-- to stop hydration errors -->
     <!-- prettier-ignore -->
+    <div class="grad"></div>
     <div id="__impala" class="bg-slate-900 container mx-auto md:p-4 h-screen flex items-center justify-center"
     ><!--app-content--></div>
     <script type="module" src="/src/entry-client"></script>

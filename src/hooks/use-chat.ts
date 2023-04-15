@@ -1,6 +1,11 @@
 import { fetchEventSource } from "@fortaine/fetch-event-source";
 import { useState, useMemo } from "react";
 import { appConfig } from "../../config.browser";
+import axios from "axios";
+
+const API_SUBMIT = "ec2-3-138-136-102.us-east-2.compute.amazonaws.com:5555/api/ask"
+
+const API_POLL = "ec2-3-138-136-102.us-east-2.compute.amazonaws.com:5555/api/poll"
 
 const API_PATH = "/api/chat";
 interface ChatMessage {
@@ -48,8 +53,15 @@ export function useChat() {
   /**
    * Sends a new message to the AI function and streams the response
    */
-  const sendMessage = (message: string, chatHistory: Array<ChatMessage>) => {
+  const sendMessage = async (message: string, chatHistory: Array<ChatMessage>) => {
     setState("waiting");
+
+    const result = await axios.post(API_SUBMIT, { 
+      question:message
+    });
+
+    console.log(result)
+
     let chatContent = "";
     const newHistory = [
       ...chatHistory,
