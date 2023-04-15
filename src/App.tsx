@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import { Head } from "@impalajs/react/head";
-import { createTheme, ThemeProvider } from "@material-ui/core/styles";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles/index.js";
 
 interface AppProps {
   title: string;
