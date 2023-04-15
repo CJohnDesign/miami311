@@ -1,13 +1,13 @@
 import { useState } from "react";
 import "./App.css";
 import { Head } from "@impalajs/react/head";
-import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+import { createTheme, ThemeProvider } from "@material-ui/core/styles";
 
 interface AppProps {
   title: string;
 }
 
-const theme = createMuiTheme({
+const theme = createTheme({
   // define your theme here
 });
 

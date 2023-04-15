@@ -1,44 +1,39 @@
 import React, { useState } from 'react';
 import { Drawer, List, ListItem, ListItemText } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core';
 
-interface DebugDrawerProps {
+interface DrawerProps {
   open: boolean;
   onClose: () => void;
   logMessage: string; // Prop for the console log message
 }
 
-const useStyles = makeStyles({
-  drawerPaper: {
-    width: '400px', // set the width of the drawer
-  },
-});
-
-const DebugDrawer: React.FC<DebugDrawerProps> = ({ open, onClose, logMessage }) => {
+const MyDrawer: React.FC<DrawerProps> = ({ open, onClose, logMessage }) => {
   const [logDisplayed, setLogDisplayed] = useState(false);
-  const classes = useStyles();
 
   const handleDrawerClose = () => {
     setLogDisplayed(false);
     onClose();
   };
 
+  const handleLogClick = () => {
+    console.log(logMessage);
+    setLogDisplayed(true);
+  };
+
   return (
-    <Drawer 
-      anchor="right" 
-      open={open} 
-      onClose={handleDrawerClose} 
-      classes={{ paper: classes.drawerPaper }} // apply the custom class to the paper element
-      className='bg-slate-900'
-    >
+    <Drawer open={open} onClose={handleDrawerClose}>
       <List>
-        <ListItem>
+        <ListItem button onClick={handleLogClick}>
           <ListItemText primary="Display Console Log" />
         </ListItem>
-        
+        {logDisplayed && (
+          <ListItem>
+            <ListItemText primary={logMessage} />
+          </ListItem>
+        )}
       </List>
     </Drawer>
   );
 };
 
-export default DebugDrawer;
+export default MyDrawer;
