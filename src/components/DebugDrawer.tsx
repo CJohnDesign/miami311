@@ -8,15 +8,15 @@ interface DebugDrawerProps {
 }
 
 const DebugDrawer: React.FC<DebugDrawerProps> = ({ show, onHide }) => {
-  const { messages } = useChat();
+//   const { messages } = useChat();
   const [currentLog, setCurrentLog] = useState<string>('');
 
-  useEffect(() => {
-    const log = messages.map((message) => {
-      return `${message.username}: ${message.text}`;
-    });
-    setCurrentLog(log.join('\n'));
-  }, [messages]);
+//   useEffect(() => {
+//     const log = messages.map((message) => {
+//       return `${message.username}: ${message.text}`;
+//     });
+//     setCurrentLog(log.join('\n'));
+//   }, [messages]);
 
   return (
     <Offcanvas show={show} onHide={onHide} className="bg-slate-900" style={{backgroundColor:"#111729"}}>
