@@ -1,56 +1,25 @@
-import React, { useState } from 'react';
-import { Drawer, List, ListItem, ListItemText } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Offcanvas } from 'react-bootstrap';
 
-interface DrawerProps {
-  open: boolean;
-  onClose: () => void;
-  logMessage: string; // Prop for the console log message
+interface DebugDrawerProps {
+  show: boolean;
+  onHide: () => void;
 }
 
-const useStyles = makeStyles(() => ({
-  drawer: {
-    width: 400,
-    backgroundColor: '#1C2331',
-  },
-  listItem: {
-    color: 'white',
-  },
-}));
-
-const MyDrawer: React.FC<DrawerProps> = ({ open, onClose, logMessage }) => {
-  const classes = useStyles();
-  const [logDisplayed, setLogDisplayed] = useState(false);
-
-  const handleDrawerClose = () => {
-    setLogDisplayed(false);
-    onClose();
-  };
-
-  const handleLogClick = () => {
-    console.log(logMessage);
-    setLogDisplayed(true);
-  };
+const DebugDrawer: React.FC<DebugDrawerProps> = ({ show, onHide }) => {
+  const log = ["Log 1", "Log 2", "Log 3"]; // Replace with your console log
 
   return (
-    <Drawer
-      anchor="right"
-      open={open}
-      onClose={handleDrawerClose}
-      classes={{ paper: classes.drawer }}
-    >
-      <List>
-        <ListItem button onClick={handleLogClick} className={classes.listItem}>
-          <ListItemText primary="Display Console Log" />
-        </ListItem>
-        {logDisplayed && (
-          <ListItem className={classes.listItem}>
-            <ListItemText primary={logMessage} />
-          </ListItem>
-        )}
-      </List>
-    </Drawer>
+    <Offcanvas show={show} onHide={onHide} className="bg-slate-900">
+      <Offcanvas.Header closeButton>
+        <Offcanvas.Title className='text-white'>Console Log</Offcanvas.Title>
+      </Offcanvas.Header>
+      <Offcanvas.Body>
+        {log.map((message, index) => (
+          <p className='text-white' key={index}>{message}</p>
+        ))}
+      </Offcanvas.Body>
+    </Offcanvas>
   );
 };
 
-export default MyDrawer;
+export default DebugDrawer;
