@@ -116,10 +116,10 @@ export function useChat() {
             exit = true
           }
           if (element.arguments.input) {
-            result_message += `\n\nRunning internal command ${element.command}`
+            result_message += `\n\n**Action** ${element.command}`
             setCurrentChat(result_message);
           } else if (element.arguments.url) {
-            result_message += `\n\nRunning internal command ${element.command} querying with website ${element.arguments.url}`
+            result_message += `\n\n**Action** ${element.command} querying with website ${element.arguments.url}`
             setCurrentChat(result_message);
           }
         }
