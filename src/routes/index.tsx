@@ -119,12 +119,6 @@ export default function Index() {
               style={{borderColor: '#72D0ED'}}
             />
             {state === "idle" ? (
-              // <button
-              //   className="bg-pink-600 text-white font-bold py-2 px-4 rounded-lg"
-              //   type="submit"
-              // >
-              //   Send
-              // </button>
               <button id='openDebug' type="submit" className="bg-pink-600" style={{ backgroundColor: 'transparent', border: 'none', padding: '12px' }}>
                 <svg width="24" height="24" viewBox="0 0 673 673" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path className="bg-pink-600" fill="#DE5684" d="M663.653 9.276C655.268 0.89053 642.727 -1.72401 631.675 2.57293L19.408 241.506C9.03826 245.558 1.77733 255.042 0.58533 266.11C-0.623003 277.188 4.43946 288.001 13.7104 294.184L232.724 440.197L378.75 659.237C384.318 667.607 393.682 672.534 403.584 672.534C404.651 672.534 405.724 672.477 406.808 672.362C417.886 671.169 427.37 663.904 431.428 653.523L670.361 41.2566C674.663 30.1993 672.023 17.6526 663.653 9.26732L663.653 9.276ZM94.56 276.303L520.707 109.996L250.453 380.236L94.56 276.303ZM396.627 578.356L292.684 422.463L562.911 152.249L396.627 578.356Z" />
