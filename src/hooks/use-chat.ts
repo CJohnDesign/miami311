@@ -82,7 +82,7 @@ export function useChat() {
       messages: newHistory.slice(-appConfig.historyLength),
     });
 
-    setCurrentChat("...");
+    setCurrentChat("Great! Let me do some research. \n\nYou can see my progress in the left sidebar.");
 
     let history = [];
     let tmp_poll_url = new URL(API_POLL);
@@ -183,5 +183,5 @@ export function useChat() {
     // });
   };
 
-  return { sendMessage, currentChat, chatHistory, cancel, clear, state };
+  return { sendMessage, currentChat, currentLog, chatHistory, cancel, clear, state };
 }
