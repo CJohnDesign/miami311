@@ -90,7 +90,7 @@ export function useChat() {
     const poll_url: string = tmp_poll_url.toString()
     let poll_result;
     let exit = false;
-    for (let i = 0; i<120; i++) {
+    for (let i = 0; i<(5*60); i++) {
 
       // get result and update history when necessary
       poll_result = await axios.get(poll_url.toString());
@@ -106,7 +106,7 @@ export function useChat() {
         console.log(JSON.stringify(element))
         if (element.thought) {
           result_message += `\n\nInternal thought: ${element.thought}`
-          setCurrentChat(result_message);
+          setCurrentLog(result_message);
         } else if (element.command) {
           if (element.command === "print_answer") {
             console.log("Got Print Answer")

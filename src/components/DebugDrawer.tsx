@@ -10,7 +10,7 @@ interface DebugDrawerProps {
 
 const DebugDrawer: React.FC<DebugDrawerProps> = ({ show, onHide }) => {
     const { currentLog } = useChat();
-    if (currentLog) {console.log(currentLog)}
+    if (currentLog) {console.log("=========" + currentLog)}
     const log = ["Log 1", "Log 2", "Log 3"]; // Replace with your console log
 
     return (
