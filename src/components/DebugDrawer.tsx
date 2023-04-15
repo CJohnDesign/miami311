@@ -14,7 +14,7 @@ const DebugDrawer: React.FC<DebugDrawerProps> = ({ show, onHide }) => {
     const log = ["Log 1", "Log 2", "Log 3"]; // Replace with your console log
 
     return (
-        <Offcanvas show={show} onHide={onHide} className="bg-slate-900">
+        <Offcanvas show={show} onHide={onHide} className="bg-slate-900" style={{backgroundColor:"#111729"}}>
             <Offcanvas.Header closeButton>
                 <Offcanvas.Title className='text-white'>Console Log</Offcanvas.Title>
             </Offcanvas.Header>
