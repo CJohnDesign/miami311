@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import AppBar from '@material-ui/core/AppBar/index.js';
 import Toolbar from '@material-ui/core/Toolbar/index.js';
 import IconButton from '@material-ui/core/IconButton/index.js';
