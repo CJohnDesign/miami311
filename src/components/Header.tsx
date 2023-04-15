@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import AppBar from '@material-ui/core/AppBar/index.js';
-import Toolbar from '@material-ui/core/Toolbar/index.js';
-import IconButton from '@material-ui/core/IconButton/index.js';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
 import CodeIcon from '@material-ui/icons/Code';
 import DebugDrawer from './DebugDrawer';
-import { makeStyles } from '@material-ui/core/styles/index.js';
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     appBar: {
