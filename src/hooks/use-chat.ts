@@ -105,12 +105,12 @@ export function useChat() {
       history.forEach(element => {
         console.log(JSON.stringify(element))
         if (element.thought) {
-          result_message += `\n\nInternal thought: ${element.thought}`
+          result_message += `\n\n**Thought:** ${element.thought}`
           setCurrentLog(result_message);
           // console.log("++++++" + result_message)
         } else if (element.command) {
           if (element.command === "print_answer") {
-            result_message += `\n\nFINAL ANSWER:\n\n${element.arguments.answer}`
+            result_message += `\n\n**Final Answer:**\n\n${element.arguments.answer}`
             setCurrentChat(result_message);
             exit = true
           }
