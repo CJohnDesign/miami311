@@ -90,7 +90,7 @@ export function useChat() {
     const poll_url: string = tmp_poll_url.toString()
     let poll_result;
     let exit = false;
-    for (let i = 0; i<60; i++) {
+    for (let i = 0; i<120; i++) {
 
       // get result and update history when necessary
       poll_result = await axios.get(poll_url.toString());
