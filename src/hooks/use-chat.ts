@@ -96,6 +96,7 @@ export function useChat() {
       let poll_result_data = poll_result.data
       if (poll_result_data.process.length > history.length) {
         history = poll_result_data.process
+        console.log("History = " + history.toString())
       }
 
       // compile history into an AI chat message
@@ -103,11 +104,14 @@ export function useChat() {
       history.forEach(element => {
         if (element.command) {
           if (element.command === "print_answer") {
+            console.log("Got Print Answer")
             exit = true
           }
           if (element.arguments.input) {
+            console.log("Got Input")
             result_message += `Running internal command ${element.command}`
           } else if (element.arguments.url) {
+            console.log("Got Args url")
             result_message += `Running internal command ${element.command} querying with website ${element.arguments.url}`
           }
         }
@@ -124,50 +128,50 @@ export function useChat() {
 
     // This is like an EventSource, but allows things like
     // POST requests and headers
-    fetchEventSource(API_PATH, {
-      body,
-      method: "POST",
-      signal: abortController.signal,
-      onclose: () => {
-        setState("idle");
-      },
-      onmessage: (event) => {
-        switch (event.event) {
-          case "delta": {
-            // This is a new word or chunk from the AI
-            setState("loading");
-            const message = JSON.parse(event.data);
-            if (message?.role === "assistant") {
-              chatContent = "";
-              return;
-            }
-            if (message.content) {
-              chatContent += message.content;
-              setCurrentChat(chatContent);
-            }
-            break;
-          }
-          case "open": {
-            // The stream has opened and we should recieve
-            // a delta event soon. This is normally almost instant.
-            setCurrentChat("...");
-            break;
-          }
-          case "done": {
-            // When it's done, we add the message to the history
-            // and reset the current chat
-            setChatHistory((curr) => [
-              ...curr,
-              { role: "assistant", content: chatContent } as const,
-            ]);
-            setCurrentChat(null);
-            setState("idle");
-          }
-          default:
-            break;
-        }
-      },
-    });
+    // fetchEventSource(API_PATH, {
+    //   body,
+    //   method: "POST",
+    //   signal: abortController.signal,
+    //   onclose: () => {
+    //     setState("idle");
+    //   },
+    //   onmessage: (event) => {
+    //     switch (event.event) {
+    //       case "delta": {
+    //         // This is a new word or chunk from the AI
+    //         setState("loading");
+    //         const message = JSON.parse(event.data);
+    //         if (message?.role === "assistant") {
+    //           chatContent = "";
+    //           return;
+    //         }
+    //         if (message.content) {
+    //           chatContent += message.content;
+    //           setCurrentChat(chatContent);
+    //         }
+    //         break;
+    //       }
+    //       case "open": {
+    //         // The stream has opened and we should recieve
+    //         // a delta event soon. This is normally almost instant.
+    //         setCurrentChat("...");
+    //         break;
+    //       }
+    //       case "done": {
+    //         // When it's done, we add the message to the history
+    //         // and reset the current chat
+    //         setChatHistory((curr) => [
+    //           ...curr,
+    //           { role: "assistant", content: chatContent } as const,
+    //         ]);
+    //         setCurrentChat(null);
+    //         setState("idle");
+    //       }
+    //       default:
+    //         break;
+    //     }
+    //   },
+    // });
   };
 
   return { sendMessage, currentChat, chatHistory, cancel, clear, state };
