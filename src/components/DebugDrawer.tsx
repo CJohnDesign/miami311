@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Drawer, List, ListItem, ListItemText } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 interface DrawerProps {
   open: boolean;
@@ -7,7 +8,18 @@ interface DrawerProps {
   logMessage: string; // Prop for the console log message
 }
 
+const useStyles = makeStyles(() => ({
+  drawer: {
+    width: 400,
+    backgroundColor: '#1C2331',
+  },
+  listItem: {
+    color: 'white',
+  },
+}));
+
 const MyDrawer: React.FC<DrawerProps> = ({ open, onClose, logMessage }) => {
+  const classes = useStyles();
   const [logDisplayed, setLogDisplayed] = useState(false);
 
   const handleDrawerClose = () => {
@@ -21,13 +33,18 @@ const MyDrawer: React.FC<DrawerProps> = ({ open, onClose, logMessage }) => {
   };
 
   return (
-    <Drawer open={open} onClose={handleDrawerClose}>
+    <Drawer
+      anchor="right"
+      open={open}
+      onClose={handleDrawerClose}
+      classes={{ paper: classes.drawer }}
+    >
       <List>
-        <ListItem button onClick={handleLogClick}>
+        <ListItem button onClick={handleLogClick} className={classes.listItem}>
           <ListItemText primary="Display Console Log" />
         </ListItem>
         {logDisplayed && (
-          <ListItem>
+          <ListItem className={classes.listItem}>
             <ListItemText primary={logMessage} />
           </ListItem>
         )}
