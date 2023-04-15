@@ -18,6 +18,7 @@ interface ChatMessage {
  */
 export function useChat() {
   const [currentChat, setCurrentChat] = useState<string | null>(null);
+  const [currentLog, setCurrentLog] = useState<string | null>(null);
   const [sessionID, setSessionID] = useState<string | null>(null);
   const [chatHistory, setChatHistory] = useState<ChatMessage[]>([]);
   const [state, setState] = useState<"idle" | "waiting" | "loading">("idle");
@@ -65,7 +66,7 @@ export function useChat() {
       setCurrentChat("Zoinks, the back end is having trouble, please wait a minute ...");
       return;
     }
-    const session_id: string = result.data.session_id;
+    const session_id: string =  result.data.session_id;
 
     let chatContent = "";
     const newHistory = [
@@ -102,21 +103,27 @@ export function useChat() {
       // compile history into an AI chat message
       let result_message = "";
       history.forEach(element => {
-        if (element.command) {
+        if (element.thought) {
+          result_message += `\nInternal thought: ${element.thought}`
+          setCurrentChat(result_message);
+        } else if (element.command) {
           if (element.command === "print_answer") {
             console.log("Got Print Answer")
+            setCurrentChat(result_message);
             exit = true
           }
           if (element.arguments.input) {
             console.log("Got Input")
-            result_message += `Running internal command ${element.command}`
+            result_message += `\nRunning internal command ${element.command}`
+            setCurrentChat(result_message);
           } else if (element.arguments.url) {
             console.log("Got Args url")
-            result_message += `Running internal command ${element.command} querying with website ${element.arguments.url}`
+            result_message += `\nRunning internal command ${element.command} querying with website ${element.arguments.url}`
+            setCurrentChat(result_message);
           }
         }
       });
-      setCurrentChat(result_message);
+      
 
       if (exit) {
         break
