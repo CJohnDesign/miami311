@@ -109,6 +109,7 @@ export function useChat() {
         } else if (element.command) {
           if (element.command === "print_answer") {
             console.log("Got Print Answer")
+            result_message += `\n\nThe final answer is:\n\n${element.arguments.answer}`
             setCurrentChat(result_message);
             exit = true
           }
