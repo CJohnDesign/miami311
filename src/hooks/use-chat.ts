@@ -107,6 +107,7 @@ export function useChat() {
         if (element.thought) {
           result_message += `\n\nInternal thought: ${element.thought}`
           setCurrentLog(result_message);
+          console.log("++++++" + result_message)
         } else if (element.command) {
           if (element.command === "print_answer") {
             console.log("Got Print Answer")
@@ -115,11 +116,9 @@ export function useChat() {
             exit = true
           }
           if (element.arguments.input) {
-            console.log("Got Input")
             result_message += `\n\nRunning internal command ${element.command}`
             setCurrentChat(result_message);
           } else if (element.arguments.url) {
-            console.log("Got Args url")
             result_message += `\n\nRunning internal command ${element.command} querying with website ${element.arguments.url}`
             setCurrentChat(result_message);
           }

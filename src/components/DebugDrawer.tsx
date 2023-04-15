@@ -11,7 +11,7 @@ interface DebugDrawerProps {
 const DebugDrawer: React.FC<DebugDrawerProps> = ({ show, onHide }) => {
     const { currentLog } = useChat();
     if (currentLog) {console.log("=========" + currentLog)}
-    const log = ["Log 1", "Log 2", "Log 3"]; // Replace with your console log
+    // const log = ["Log 1", "Log 2", "Log 3"]; // Replace with your console log
 
     return (
         <Offcanvas show={show} onHide={onHide} className="bg-slate-900" style={{backgroundColor:"#111729"}}>
@@ -19,9 +19,10 @@ const DebugDrawer: React.FC<DebugDrawerProps> = ({ show, onHide }) => {
                 <Offcanvas.Title className='text-white'>Console Log</Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body>
-                {log.map((message, index) => (
+                {/* {log.map((message, index) => (
                     <p className='text-white' key={index}>{message}</p>
-                ))}
+                ))} */}
+                {currentLog && <p className='text-white'>{currentLog}</p>}
             </Offcanvas.Body>
         </Offcanvas>
     );
