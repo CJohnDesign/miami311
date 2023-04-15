@@ -103,6 +103,7 @@ export function useChat() {
       // compile history into an AI chat message
       let result_message = "";
       history.forEach(element => {
+        console.log(JSON.stringify(element))
         if (element.thought) {
           result_message += `\nInternal thought: ${element.thought}`
           setCurrentChat(result_message);
@@ -115,11 +116,11 @@ export function useChat() {
           }
           if (element.arguments.input) {
             console.log("Got Input")
-            result_message += `\nRunning internal command ${element.command}`
+            result_message += `\n\nRunning internal command ${element.command}`
             setCurrentChat(result_message);
           } else if (element.arguments.url) {
             console.log("Got Args url")
-            result_message += `\nRunning internal command ${element.command} querying with website ${element.arguments.url}`
+            result_message += `\n\nRunning internal command ${element.command} querying with website ${element.arguments.url}`
             setCurrentChat(result_message);
           }
         }
