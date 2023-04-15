@@ -82,7 +82,7 @@ export function useChat() {
       messages: newHistory.slice(-appConfig.historyLength),
     });
 
-    setCurrentChat("Great! Let me do some research. \n\nYou can see my progress in the left sidebar.");
+    setCurrentChat("Great! Let me do some research.");
 
     let history = [];
     let tmp_poll_url = new URL(API_POLL);
@@ -97,7 +97,7 @@ export function useChat() {
       let poll_result_data = poll_result.data
       if (poll_result_data.process.length > history.length) {
         history = poll_result_data.process
-        console.log("History = " + history.toString())
+        // console.log("History = " + history.toString())
       }
 
       // compile history into an AI chat message
@@ -107,11 +107,10 @@ export function useChat() {
         if (element.thought) {
           result_message += `\n\nInternal thought: ${element.thought}`
           setCurrentLog(result_message);
-          console.log("++++++" + result_message)
+          // console.log("++++++" + result_message)
         } else if (element.command) {
           if (element.command === "print_answer") {
-            console.log("Got Print Answer")
-            result_message += `\n\nThe final answer is:\n\n${element.arguments.answer}`
+            result_message += `\n\nFINAL ANSWER:\n\n${element.arguments.answer}`
             setCurrentChat(result_message);
             exit = true
           }

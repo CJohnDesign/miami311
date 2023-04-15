@@ -2,6 +2,6 @@ export const prompt = `As a 311 operator for the city of Miami, your job is to a
 
 export const samplePhrases = [
   "I found a lost dog. Who should I call?",
-  "When is my garbage day?",
+  "When is my bulk pickup garbage day?",
   "Do I need to pull a permit to put a shed?",
 ];
