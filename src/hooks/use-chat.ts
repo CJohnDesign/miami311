@@ -3,9 +3,9 @@ import { useState, useMemo } from "react";
 import { appConfig } from "../../config.browser";
 import axios from "axios";
 
-const API_SUBMIT = "https://06f8-3-138-136-102.ngrok.io/api/ask"
+const API_SUBMIT = "https://1e6e-3-138-136-102.ngrok.io/api/ask"
 
-const API_POLL = "https://06f8-3-138-136-102.ngrok.io/api/poll"
+const API_POLL = "https://1e6e-3-138-136-102.ngrok.io/api/poll"
 
 const API_PATH = "/api/chat";
 interface ChatMessage {
